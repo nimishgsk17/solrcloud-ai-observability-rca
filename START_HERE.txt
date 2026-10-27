@@ -1,0 +1,46 @@
+UseReady Solr RCA — V4, two-stage LangGraph + hosted LLM
+========================================================
+
+1. Extract ZIP to a new folder, NOT on top of V3.
+2. Open Windows PowerShell in that extracted folder.
+3. Create the isolated virtual environment:
+
+   py -3.12 -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install --upgrade pip
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   .\.venv\Scripts\python.exe -m pip check
+
+4. Run the UI:
+
+   .\.venv\Scripts\python.exe -m streamlit run app.py
+
+5. Open http://localhost:8501
+6. Select Bundled demo, verify 21,609 events and 2 incidents.
+7. In LangGraph AI investigation choose the Node A incident.
+8. Click Practice LangGraph (fake model, no API) to check graph routing.
+9. For REAL AI (no GPU needed):
+   - Open https://console.groq.com/ and create an API key.
+   - In the UI choose "Groq — recommended".
+   - Default endpoint: https://api.groq.com/openai/v1
+   - Model: openai/gpt-oss-120b
+   - Paste your key into the password input (never into source code).
+   - Click Check model connection, then Investigate with REAL hosted/local AI.
+
+The system uses TWO LLM stages; by default there is ONE extra read-only check:
+initial LLM triage -> Python check from loaded logs -> final LLM hypotheses.
+
+Typical default settings: input budget 6144 estimated tokens, evidence 12,
+model context 131072, max output 2048 per call, reasoning low, temperature 0,
+JSON mode on, timeout 90 seconds, 1 retry per stage, diagnostic window +/-6 min.
+
+No hosted model is included. Your API key, quotas and available models depend
+on your provider. Use synthetic or authorized/redacted log excerpts only.
+
+If Python 3.12 is unavailable, run "py -0p" and use 3.11 or 3.13.
+If the port is busy, stop older Streamlit with Ctrl+C before starting this app.
+
+Tests:
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe evaluate.py --output evaluation.json
+
+See docs/TWO_STAGE_EXPLAINED.md for the architecture, exact tools, and model tradeoffs.

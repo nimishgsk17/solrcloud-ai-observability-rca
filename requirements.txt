@@ -1,0 +1,7 @@
+# Install in a fresh .venv, NOT your global Python installation.
+# NumPy 2+ prevents the exact PyArrow mismatch seen on Windows.
+streamlit>=1.40,<2.0
+numpy>=2.0,<3.0
+pandas>=2.2.2,<3.0
+pyarrow>=20,<27
+langgraph>=1.0,<2.0

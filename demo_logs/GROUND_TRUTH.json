@@ -1,0 +1,31 @@
+{
+  "synthetic": true,
+  "generator": "generate_logs_v2.py",
+  "seed": 23,
+  "scenario": "mixed",
+  "start_utc": "2026-10-26T08:00:00+00:00",
+  "duration_minutes": 105,
+  "total_lines": 21609,
+  "fault_injections": [
+    {
+      "type": "gc_pressure_search_degradation",
+      "start_minute": 40,
+      "end_minute": 47,
+      "nodes": [
+        "node-a"
+      ],
+      "known_initiator": "simulated_allocation_pressure"
+    },
+    {
+      "type": "shared_zookeeper_disruption",
+      "start_minute": 78,
+      "end_minute": 81,
+      "nodes": [
+        "node-a",
+        "node-b"
+      ],
+      "known_initiator": "simulated_shared_coordination_failure"
+    }
+  ],
+  "validation": "Not authentic SolrCloud logs; timings are simulated, with explicit limitations."
+}

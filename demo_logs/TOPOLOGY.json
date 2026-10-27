@@ -1,0 +1,22 @@
+{
+  "source": "SIMULATED_REFERENCE_TOPOLOGY",
+  "node_to_shards": {
+    "node-a": [
+      "products/shard1",
+      "inventory/shard1"
+    ],
+    "node-b": [
+      "products/shard1",
+      "orders/shard1"
+    ],
+    "node-c": [
+      "products/shard2",
+      "inventory/shard2"
+    ]
+  },
+  "zookeeper_dependency": [
+    "node-a",
+    "node-b",
+    "node-c"
+  ]
+}

@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.streamlit/
+report.json
+*.sqlite
+generated_logs/
